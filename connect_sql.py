@@ -10,6 +10,7 @@ import mysql.connector as mc
 # )
 
 # on a localhost 
+
 conn = mc.connect(
     user="root",
     password="root12345@",
