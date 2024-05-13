@@ -10,6 +10,26 @@
 from flask import Flask , render_template, url_for, request
 import joblib
 
+import pandas as pd 
+
+import mysql.connector
+
+# Connect to the database
+conn = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="1234",
+    database="bike_predicted_data"
+
+)
+if conn.is_connected():
+    print("connection is established ")
+else:
+    print("not conn")    
+
+mysql_cursor = conn.cursor()
+query = "INSERT INTO bike_predictions (owner_name, brand_name, kms_driven_bike, age_bike, power_bike, prediction) VALUES (%s, %s, %s, %s, %s, %s)"
+
 model = joblib.load('RD_model.lb')
 app = Flask(__name__)
 
@@ -26,9 +46,9 @@ def project():
 def about():
     return render_template('about.html')
 
-@app.route('/contactus')
+@app.route('/contact')
 def contactus():
-    return render_template('contactus.html')
+    return render_template('contact.html')
 
 
 @app.route('/predict',methods=['GET','POST'])
@@ -62,21 +82,39 @@ def predict():
                         'Yezdi': 20,
                         'MV': 21,
                         'Ideal': 22}
-        brand_name=bike_numbers[brand_name]
-        lst=[[owner_name,brand_name,kms_driven_bike,age_bike,power_bike]]  #sequence order
+        
+        brand_name_encode=bike_numbers[brand_name]
+        lst=[[owner_name,brand_name_encode,kms_driven_bike,age_bike,power_bike]]  #sequence order
         pred = model.predict(lst)
         pred = pred[0]
         pred = round(pred, 2)
+        user_data = (str(owner_name),str(brand_name),kms_driven_bike,age_bike,power_bike,pred)
+
+
+        try:
+    # Execute the query with user data
+            mysql_cursor.execute(query, user_data)
+            print("row is instered :", mysql_cursor.rowcount)
+    
+    # Commit the transaction
+            conn.commit()
+
+        except mysql.connector.Error as error:
+            print("Error:", error)
+
+        finally:
+    # Close the cursor and connection
+            mysql_cursor.close()
+            conn.close()
         return render_template("project.html",prediction=str(pred))
     
 
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=2525,debug=True)
 
 
     
    
 
 
+if __name__ == "__main__":
+    app.run(host='0.0.0.0',port=2525,debug=True)
 

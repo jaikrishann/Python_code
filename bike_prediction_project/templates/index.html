@@ -1,77 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>My Simple Homepage</title>
     <style>
-        /* Add your custom CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            height: 100vh;
+            overflow-y: hidden;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            
+            background-color: #666;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+        }
+        .buttonGroup {
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            position: relative;
+
+            button {
+                font-size: 1.0rem;
+                padding: 0.5rem 1rem;
+                border-radius: 5px;
+                background-color: white;
+
+            }
+        }
+        .bike-img {
+            width: 100vw;
+            z-index: -2;
+            position: absolute;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
 </head>
-
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">BIKE </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<header>
+    <h1>Welcome to the Bike Price Prediction Tool!</h1>
+</header>
 
-    <header class="jumbotron jumbotron-fluid">
-        <div class="container text-center">
-            <h1>Welcome to Your Website</h1>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae eleifend
-                urna.</p>
-            <a href="#" class="btn btn-primary">Learn More</a>
-        </div>
-    </header>
+<!-- <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</nav> -->
 
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-4">
-                <h2>Feature 1</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae eleifend urna. Donec
-                    volutpat ultrices felis id interdum.</p>
-            </div>
-            <div class="col-md-4">
-                <h2>Feature 2</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae eleifend urna. Donec
-                    volutpat ultrices felis id interdum.</p>
-            </div>
-            <div class="col-md-4">
-                <h2>Feature 3</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae eleifend urna. Donec
-                    volutpat ultrices felis id interdum.</p>
-            </div>
-        </div>
-    </div>
-    <a href="/project"><button>This is my project</button></a>
+<section>
+    <h2>About Us</h2>
+    <p>Bike Price Prediction Tool</p>
+</section>
 
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<footer>
+    <p>&copy; 2024 My Simple Homepage. All rights reserved.</p>
+</footer>
+<div class="buttonGroup">
+<a href="/project"><button>My Project</button></a>
+<a href="/contact"><button>Contact us</button></a>
+<img src="https://c4.wallpaperflare.com/wallpaper/32/42/456/harley-davidson-bikes-artist-digital-art-wallpaper-preview.jpg" alt="" class="bike-img">
+</div>
 
 </body>
-
 </html>
