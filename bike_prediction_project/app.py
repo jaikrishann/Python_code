@@ -50,6 +50,33 @@ def about():
 def contactus():
     return render_template('contact.html')
 
+@app.route('/history')
+def history():
+    # Create a cursor object
+    mysql_cursor = conn.cursor()                 #dictionary=True
+
+    try:
+        # Execute the SELECT query to fetch historical data
+        query = "SELECT * FROM bike_predictions"
+        mysql_cursor.execute(query)
+
+        # Fetch all the results
+        historical_data = mysql_cursor.fetchall()
+
+    except mysql.connector.Error as error:
+        print("Error:", error)
+        historical_data = []
+
+    finally:
+        pass
+        # # Close the cursor
+        mysql_cursor.close()
+        conn.close()
+
+    # Pass the historical data to the history.html template for rendering
+    return render_template("history.html", historical_data=historical_data)
+
+
 
 @app.route('/predict',methods=['GET','POST'])
 def predict():
@@ -118,3 +145,27 @@ def predict():
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=2525,debug=True)
 
+
+
+
+#  mysql_cursor = conn.cursor(dictionary=True)
+
+#     try:
+#         # Execute the SELECT query to fetch historical data
+#         query = "SELECT * FROM bike_predictions"
+#         mysql_cursor.execute(query)
+
+#         # Fetch all the results
+#         historical_data = mysql_cursor.fetchall()
+
+#     except mysql.connector.Error as error:
+#         print("Error:", error)
+#         historical_data = []
+
+#     finally:
+#         # Close the cursor
+#         mysql_cursor.close()
+
+#     # Pass the historical data to the history.html template for rendering
+#     return render_template("history.html", historical_data=historical_data)
+# form tag laga le user se brand name ka input leke phir history uss brand name ke according show karna hai aur ussko aur presentable banana hai 
